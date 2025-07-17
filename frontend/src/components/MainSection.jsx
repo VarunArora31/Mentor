@@ -17,7 +17,7 @@ function MainSection() {
         We are team of talented designers making websites with Bootstrap
       </p>
       <div className="d-flex mt-4" data-aos="fade-up" data-aos-delay={300}>
-        <a href="courses.html" className="btn-get-started">
+        <a href="/Courses" className="btn-get-started">
           Get Started
         </a>
       </div>
