@@ -15,9 +15,11 @@ const signUp = async (req, res) => {
                 body: {}
             })
         } else {
-            if (req.files && req.files.image.name) {
+            if (req.files && req.files.image && req.files.image.name) {
                 const image = req.files.image;
                 if (image) req.body.image = imageUpload(image, "userImage");
+            } else {
+                req.body.image = "";
             }
             const passwordEncrypt = await bycrypt.hash(req.body.password, saltRound)
             console.log(req.body.password,"jkjkjik")
@@ -46,7 +48,7 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
     console.log(req.body)
     try {
-        const findEmail = await userModel.findOne({ email: req.body.email, isAdmin: 1 })
+        const findEmail = await userModel.findOne({ email: req.body.email })
         if (findEmail == null) {
             res.json({
                 success: false,
