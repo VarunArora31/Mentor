@@ -32,12 +32,16 @@ const [data, setData] = useState({
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/signUp`, data);
-            toast.success(res.data.message);
-            navigate("/Login");
+            if (res.data.status === 200) {
+                toast.success(res.data.message);
+                navigate("/Login");
+            } else {
+                toast.error(res.data.message);
+            }
         } catch (error) {
             console.log(error, "Error");
+            toast.error("Signup failed. Please try again.");
         }
     };
 

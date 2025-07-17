@@ -12,28 +12,29 @@ function Login() {
 
    const navigate = useNavigate();
 
-    const [data, setData] = useState("")
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    })
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         try {
-            e.preventDefault()
-            axios.post(`${process.env.REACT_APP_API_URL}/login`, data).then((res) => {
-                if (res.data.status === 200) {
-                    setData(res.data.body)
-                    sessionStorage.setItem("userInfo", JSON.stringify(res.data.body))
-                    navigate("/")
-                    toast.success(`Hlo ${res.data.body.name} !  Login successfully `)
-                } else {
-                    toast.error(res.data.message)
-                }
-
-            })
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, data)
+            if (res.data.status === 200) {
+                sessionStorage.setItem("userInfo", JSON.stringify(res.data.body))
+                navigate("/")
+                toast.success(`Hello ${res.data.body.name}! Login successful`)
+            } else {
+                toast.error(res.data.message)
+            }
         } catch (error) {
             console.log(error)
+            toast.error("Login failed. Please check your credentials and try again.")
         }
     }
 

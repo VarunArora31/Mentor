@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function MainSection() {
   return (
@@ -17,9 +18,9 @@ function MainSection() {
         We are team of talented designers making websites with Bootstrap
       </p>
       <div className="d-flex mt-4" data-aos="fade-up" data-aos-delay={300}>
-        <a href="/Courses" className="btn-get-started">
+        <Link to="/Courses" className="btn-get-started">
           Get Started
-        </a>
+        </Link>
       </div>
     </div>
   </section>
