@@ -23,8 +23,14 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
+        console.log('Login form data:', data);
+        console.log('API URL:', process.env.REACT_APP_API_URL);
+        
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, data)
+            console.log('Login response:', res.data);
+            
             if (res.data.status === 200) {
                 sessionStorage.setItem("userInfo", JSON.stringify(res.data.body))
                 navigate("/")
@@ -33,7 +39,8 @@ function Login() {
                 toast.error(res.data.message)
             }
         } catch (error) {
-            console.log(error)
+            console.log('Login error:', error)
+            console.log('Error response:', error.response?.data);
             toast.error("Login failed. Please check your credentials and try again.")
         }
     }
