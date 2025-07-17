@@ -21,8 +21,8 @@ function Login() {
     const handleSubmit = (e) => {
         try {
             e.preventDefault()
-            axios.post(`http://localhost:3333/login`, data).then((res) => {
-                if (res.data.status == 200) {
+            axios.post(`${process.env.REACT_APP_API_URL}/login`, data).then((res) => {
+                if (res.data.status === 200) {
                     setData(res.data.body)
                     sessionStorage.setItem("userInfo", JSON.stringify(res.data.body))
                     navigate("/")

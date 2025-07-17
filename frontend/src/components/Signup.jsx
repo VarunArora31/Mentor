@@ -33,7 +33,7 @@ const [data, setData] = useState({
         e.preventDefault();
         try {
 
-            const res = await axios.post(`http://localhost:3333/signUp`, data);
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/signUp`, data);
             toast.success(res.data.message);
             navigate("/Login");
         } catch (error) {
