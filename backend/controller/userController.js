@@ -6,6 +6,9 @@ const saltRound = 10
 
 const signUp = async (req, res) => {
     try {
+        console.log('Signup request received:', req.body);
+        
+        // Check if user already exists
         const validationU = await userModel.findOne({ email: req.body.email })
         if (validationU !== null) {
             return res.json({
@@ -14,32 +17,53 @@ const signUp = async (req, res) => {
                 message: "Email already exist",
                 body: {}
             })
+        }
+        
+        // Handle image upload (optional)
+        if (req.files && req.files.image && req.files.image.name) {
+            const image = req.files.image;
+            if (image) req.body.image = imageUpload(image, "userImage");
         } else {
-            if (req.files && req.files.image && req.files.image.name) {
-                const image = req.files.image;
-                if (image) req.body.image = imageUpload(image, "userImage");
-            } else {
-                req.body.image = "";
-            }
-            const passwordEncrypt = await bycrypt.hash(req.body.password, saltRound)
-            console.log(req.body.password,"jkjkjik")
-            console.log(passwordEncrypt,"passwordEncrypt")
-            const data = await userModel.create({ ...req.body, password: passwordEncrypt, image: req.body.image })
-            const tokenData = await jwtTokenSign({ _id: data._id })
+            req.body.image = "";
+        }
+        
+        // Hash password
+        const passwordEncrypt = await bycrypt.hash(req.body.password, saltRound)
+        console.log('Password hashed successfully');
+        
+        // Create user data
+        const userData = {
+            name: req.body.name,
+            email: req.body.email,
+            mobile: req.body.mobile,
+            password: passwordEncrypt,
+            image: req.body.image || ""
+        };
+        
+        console.log('Creating user with data:', userData);
+        const data = await userModel.create(userData);
+        console.log('User created successfully:', data._id);
+        
+        // Generate JWT token
+        const tokenData = await jwtTokenSign({ _id: data._id })
+        if (tokenData) {
             data.token = tokenData.token
             data.loginTime = tokenData.decoded.iat
-            res.json({
-                success: true,
-                status: 200,
-                message: "User created succesfully",
-                body: data
-            })
         }
+        
+        res.json({
+            success: true,
+            status: 200,
+            message: "User created successfully",
+            body: data
+        })
+        
     } catch (error) {
+        console.error('Signup error:', error);
         return res.json({
             success: false,
             status: 400,
-            message: error,
+            message: error.message || error,
             body: {}
         })
     }

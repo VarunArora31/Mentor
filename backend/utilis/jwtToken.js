@@ -2,18 +2,20 @@ import jwt from "jsonwebtoken"
 import userSchema from "../model/userModel.js"
 
 
-const jwtTokenSign = async (id) => {
+const jwtTokenSign = async (userData) => {
     try {
         const secretKey = process.env.JWTSECRETKEY
-        const token = jwt.sign({ id: id._id }, secretKey)
+        const userId = userData._id || userData.id
+        const token = jwt.sign({ id: userId }, secretKey)
         const decoded = jwt.verify(token, secretKey)
-        await userSchema.findByIdAndUpdate({ _id: decoded.id },
+        await userSchema.findByIdAndUpdate(userId,
             { token: token, loginTime: decoded.iat },
-            { new: true })         //in this we update so that, token and logintime should save in db
+            { new: true })
 
         return { token, decoded }
     } catch (error) {
-        console.log(error)
+        console.log('JWT Token Error:', error)
+        return null
     }
 }
 
