@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# Mentor - Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive mentorship platform built with React.js frontend and Node.js backend.
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+```
+Mentor/
+├── frontend/          # React.js application
+├── backend/           # Node.js API server
+└── README.md         # This file
+```
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- User authentication (Login/Signup)
+- Course management
+- Event listings
+- Trainer profiles
+- Pricing plans
+- Contact forms
+- Responsive design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+### Frontend
+- React.js
+- React Router
+- Axios
+- AOS (Animate On Scroll)
+- Bootstrap
+- React Toastify
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- bcryptjs for password hashing
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/VarunArora31/Mentor.git
+   cd Mentor
+   ```
 
-### `npm run eject`
+2. **Setup Backend**
+   ```bash
+   cd backend
+   npm install
+   # Create .env file with your environment variables
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Setup Frontend**
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Environment Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a `.env` file in the backend directory with the following variables:
+```
+PORT=3333
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Endpoints
 
-## Learn More
+### Authentication
+- `POST /login` - User login
+- `POST /signUp` - User registration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Courses
+- `GET /courses` - Get all courses
+- `POST /courses` - Create new course
+- `PUT /courses/:id` - Update course
+- `DELETE /courses/:id` - Delete course
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Users
+- `GET /users` - Get all users
+- `GET /users/:id` - Get user by ID
+- `PUT /users/:id` - Update user profile
 
-### Code Splitting
+## Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Running in Development Mode
 
-### Analyzing the Bundle Size
+**Backend:**
+```bash
+cd backend
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Frontend:**
+```bash
+cd frontend
+npm start
+```
 
-### Making a Progressive Web App
+The frontend will run on `http://localhost:3000` and the backend on `http://localhost:3333`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Deployment
 
-### Advanced Configuration
+### Frontend Deployment
+The frontend can be deployed to Netlify, Vercel, or any static hosting service.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Backend Deployment
+The backend can be deployed to Heroku, Railway, or any cloud platform supporting Node.js.
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+**Varun Arora**
+- GitHub: [@VarunArora31](https://github.com/VarunArora31)
+
+## Acknowledgments
+
+- Thanks to all contributors
+- Built with love for the mentorship community
