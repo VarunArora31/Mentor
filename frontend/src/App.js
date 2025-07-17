@@ -27,16 +27,16 @@ function App() {
    <>
    <Routes>
     <Route path='/' element={<Layout/>}>
-    <Route path='/' element={<MainSection/>}></Route>
-    <Route path='/About' element={<About/>}></Route>
-    <Route path='/Contact' element={<Contact/>}></Route>
-    <Route path='/Courses' element={<Courses/>}></Route>
-    <Route path='/CoursesDetail' element={<CoursesDetail/>}></Route>
-    <Route path='/Events' element={<Events/>}></Route>
-    <Route path='/Pricing' element={<Pricing/>}></Route>
-    <Route path='/Trainer' element={<Trainer/>}></Route>
-    <Route path='/Login' element={<Login/>}></Route>
-    <Route path='/Signup' element={<Signup/>}></Route>
+      <Route index element={<MainSection/>} />
+      <Route path='About' element={<About/>} />
+      <Route path='Contact' element={<Contact/>} />
+      <Route path='Courses' element={<Courses/>} />
+      <Route path='CoursesDetail' element={<CoursesDetail/>} />
+      <Route path='Events' element={<Events/>} />
+      <Route path='Pricing' element={<Pricing/>} />
+      <Route path='Trainer' element={<Trainer/>} />
+      <Route path='Login' element={<Login/>} />
+      <Route path='Signup' element={<Signup/>} />
     </Route>
    </Routes>
    <ToastContainer/>
